@@ -4,7 +4,7 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class isValid {
+public class IsValid {
     public static void main(String[] args) {
         //20. 有效的括号
 //        给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。

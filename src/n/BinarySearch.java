@@ -2,6 +2,9 @@ package n;
 
 import java.util.Arrays;
 
+/**
+ * 二分查找
+ */
 public class BinarySearch {
     public static void main(String[] args) {
         int[] sortedArray = {1, 3, 5, 7, 9, 11, 13, 15};
@@ -102,23 +105,36 @@ public class BinarySearch {
         return candidate;
     }
 
-    public static int binarySearchMostLeft2(int[] a, int target) {
+    public static int binarySearchMostLeftWithoutNegative(int[] a, int target) {
         // 不返回-1
         int i = 0;
         int j = a.length - 1;
         while (i <= j) {
             int m = (i + j) >>> 1;
-            int num = a[m];
-            if (num >= target) {
+            if (target <= a[m]) {
                 j = m - 1;
             } else {
                 i = m + 1;
             }
         }
         //返回本身所在索引或者比目标小的最靠左的位置
-        //return i-1;
-        //返回本身所在索引或者比目标大的最靠左的位置
         return i;
+    }
+
+    public static int binarySearchMostRightWithoutNegative(int[] a, int target) {
+        // 不返回-1
+        int i = 0;
+        int j = a.length - 1;
+        while (i <= j) {
+            int m = (i + j) >>> 1;
+            if (target < a[m]) {
+                j = m - 1;
+            } else {
+                i = m + 1;
+            }
+        }
+        //返回本身所在索引或者比目标大的最靠右的位置
+        return i - 1;
     }
 
     public static int[] insert() {
@@ -135,6 +151,7 @@ public class BinarySearch {
         }
         return arr2;
     }
+
 }
 
 

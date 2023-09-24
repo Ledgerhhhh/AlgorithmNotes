@@ -2,6 +2,7 @@ package main;
 
 import n.DynamicArray;
 import n.SinglyLinkedList;
+import n.SinglyLinkedListSentinel;
 
 import java.util.function.Consumer;
 
@@ -28,14 +29,29 @@ public class Main {
 //        System.out.println(dynamicArray);
 
 
-        SinglyLinkedList integers = new SinglyLinkedList();
-        for (int i = 0; i < 10; i++) {
-            integers.addFirst(i);
-        }
-        integers.foreach2(System.out::println);
+//        SinglyLinkedList integers = new SinglyLinkedList();
+//        for (int i = 0; i < 10; i++) {
+//            integers.addLast(i);
+//        }
+////        integers.foreach2(System.out::println);
+////        System.out.println(integers.get(1));
+////        integers.insert(0,99999);
+//        integers.remove(3);
+//
+//        integers.foreach2(System.out::println);
 
+
+        SinglyLinkedListSentinel integers = new SinglyLinkedListSentinel();
+
+        for (int i = 0; i < 10; i++) {
+            integers.addLast(i);
+        }
+//        integers.foreach(System.out::println);
+        for (Integer i : integers){
+            System.out.println(i);
+        }
+        System.out.println(integers.get(0));
 
     }
-
 
 }

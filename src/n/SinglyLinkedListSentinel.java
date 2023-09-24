@@ -3,25 +3,23 @@ package n;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-public class SinglyLinkedList implements Iterable<Integer> {
+public class SinglyLinkedListSentinel implements Iterable<Integer> {
     //单项链表
-    private Node head;
-
+    private Node head = new Node(999, null);
 
     public void addFirst(int value) {
-        head = new Node(value, head);
+        head = new Node(value, head.next);
     }
 
     public void addLast(int value) {
-        if (head == null) {
-            addFirst(value);
-            return;
-        }
-        Node v = new Node(value, null);
+        findLast().next = new Node(value, null);
+    }
+
+    private Node findLast() {
         Node c = head;
         while (c.next != null)
             c = c.next;
-        c.next = v;
+        return c;
     }
 
     public int get(int index) {
@@ -55,7 +53,6 @@ public class SinglyLinkedList implements Iterable<Integer> {
         if (c == null) throw illegalIndex(index);
         if (c.next == null) throw illegalIndex(index);
         c.next = c.next.next;
-
     }
 
 
@@ -73,7 +70,7 @@ public class SinglyLinkedList implements Iterable<Integer> {
 
 
     public void foreach(Consumer<Integer> consumer) {
-        Node c = head;
+        Node c = head.next;
         while (c != null) {
             consumer.accept(c.value);
             c = c.next;
@@ -81,7 +78,7 @@ public class SinglyLinkedList implements Iterable<Integer> {
     }
 
     public void foreach2(Consumer<Integer> consumer) {
-        for (Node c = head; c != null; c = c.next) {
+        for (Node c = head.next; c != null; c = c.next) {
             consumer.accept(c.value);
         }
     }
@@ -89,7 +86,7 @@ public class SinglyLinkedList implements Iterable<Integer> {
     @Override
     public Iterator<Integer> iterator() {
         return new Iterator<>() {
-            Node c = head;
+            Node c = head.next;
 
             @Override
             public boolean hasNext() {

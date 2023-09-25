@@ -1,12 +1,14 @@
 package n;
 
+/**
+ * 二维数组
+ */
 public class CatchLine {
 
 
     public static void main(String[] args) {
 
     }
-
 
     public static int ij(int[][] arr, int row, int columns) {
         int sum = 0;

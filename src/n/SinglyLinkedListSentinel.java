@@ -2,21 +2,28 @@ package n;
 
 import java.util.Iterator;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
+/**
+ * 带哨兵的单项链表
+ */
 public class SinglyLinkedListSentinel implements Iterable<Integer> {
     //单项链表
-    private Node head = new Node(999, null);
+    private final Node head = new Node(999, null);
 
     public void addFirst(int value) {
-        head = new Node(value, head.next);
+        head.next = new Node(value, head.next);
     }
 
     public void addLast(int value) {
+        //找到尾节点,在后面增加元素
         findLast().next = new Node(value, null);
     }
 
     private Node findLast() {
+        //头结点不为null
         Node c = head;
+        //获取一个尾节点为null但是本身不为null的
         while (c.next != null)
             c = c.next;
         return c;
@@ -29,10 +36,6 @@ public class SinglyLinkedListSentinel implements Iterable<Integer> {
     }
 
     public void insert(int index, int value) {
-        if (index == 0) {
-            addFirst(value);
-            return;
-        }
         Node p = findNode(index - 1);
         if (p != null)
             p.next = new Node(value, p.next);
@@ -40,16 +43,14 @@ public class SinglyLinkedListSentinel implements Iterable<Integer> {
     }
 
     public void removeFirst() {
-        if (head == null) throw illegalIndex(0);
-        head = head.next;
+        if(head.next!=null)
+            head.next = head.next.next;
+        else
+            throw illegalIndex(0);
     }
 
     public void remove(int index) {
-        if (index == 0) {
-            removeFirst();
-            return;
-        }
-        Node c = findNode(index - 1);
+        Node c = findNode(index-1);
         if (c == null) throw illegalIndex(index);
         if (c.next == null) throw illegalIndex(index);
         c.next = c.next.next;
@@ -62,7 +63,7 @@ public class SinglyLinkedListSentinel implements Iterable<Integer> {
 
 
     private Node findNode(int index) {
-        int i = 0;
+        int i = -1;
         for (Node c = head; c != null; i++, c = c.next)
             if (index == i) return c;
         return null;
@@ -70,6 +71,7 @@ public class SinglyLinkedListSentinel implements Iterable<Integer> {
 
 
     public void foreach(Consumer<Integer> consumer) {
+        // 避免遍历哨兵节点
         Node c = head.next;
         while (c != null) {
             consumer.accept(c.value);
@@ -78,7 +80,7 @@ public class SinglyLinkedListSentinel implements Iterable<Integer> {
     }
 
     public void foreach2(Consumer<Integer> consumer) {
-        for (Node c = head.next; c != null; c = c.next) {
+        for (Node c = head.next  /*避免遍历哨兵节点*/; c != null; c = c.next) {
             consumer.accept(c.value);
         }
     }
@@ -86,6 +88,7 @@ public class SinglyLinkedListSentinel implements Iterable<Integer> {
     @Override
     public Iterator<Integer> iterator() {
         return new Iterator<>() {
+            /*避免遍历哨兵节点*/
             Node c = head.next;
 
             @Override
@@ -111,5 +114,4 @@ public class SinglyLinkedListSentinel implements Iterable<Integer> {
             this.next = next;
         }
     }
-
 }

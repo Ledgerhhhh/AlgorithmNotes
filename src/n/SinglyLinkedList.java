@@ -3,6 +3,9 @@ package n;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
+/**
+ * 普通的单链表
+ */
 public class SinglyLinkedList implements Iterable<Integer> {
     //单项链表
     private Node head;

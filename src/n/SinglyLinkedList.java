@@ -108,6 +108,20 @@ public class SinglyLinkedList implements Iterable<Integer> {
         };
     }
 
+    public void loop(Consumer<Integer> before, Consumer<Integer> after) {
+        recursion(head, before, after);
+    }
+
+    private void recursion(Node curr, Consumer<Integer> before, Consumer<Integer> after) {
+        if (curr == null) return;
+        //前置方法处理
+        before.accept(curr.value);
+        recursion(curr.next, before, after);
+        //后置方法处理
+        after.accept(curr.value);
+    }
+
+
     private static class Node {
         int value;
         Node next;

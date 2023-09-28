@@ -1,4 +1,4 @@
-package t;
+package t.easy;
 
 public class Search {
     public int search(int[] nums, int target) {

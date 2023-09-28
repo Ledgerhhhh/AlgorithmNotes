@@ -9,6 +9,9 @@ import java.util.Iterator;
 import java.util.function.Consumer;
 
 public class Main {
+    public Main() {
+    }
+
     public static void main(String[] args) {
 
         DoublyLinkedListSentinel integers = new DoublyLinkedListSentinel();

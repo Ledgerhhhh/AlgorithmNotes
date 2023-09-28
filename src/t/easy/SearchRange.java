@@ -1,4 +1,4 @@
-package t;
+package t.easy;
 
 public class SearchRange {
 

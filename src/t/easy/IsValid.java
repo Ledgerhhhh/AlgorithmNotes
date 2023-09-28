@@ -1,4 +1,4 @@
-package t;
+package t.easy;
 
 import java.util.Deque;
 import java.util.HashMap;

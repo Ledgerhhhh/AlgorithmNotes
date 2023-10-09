@@ -1,9 +1,6 @@
 package main;
 
-import n.DoublyLinkedListSentinel;
-import n.DynamicArray;
-import n.SinglyLinkedList;
-import n.SinglyLinkedListSentinel;
+import n.*;
 
 import java.util.Iterator;
 import java.util.function.Consumer;
@@ -14,15 +11,35 @@ public class Main {
 
     public static void main(String[] args) {
 
-        DoublyLinkedListSentinel integers = new DoublyLinkedListSentinel();
+//        DoublyLinkedListSentinel integers = new DoublyLinkedListSentinel();
+//
+//        for (int i = 0; i < 10; i++) {
+//            integers.addLast(i);
+//        }
+//
+//        for (Integer integer : integers) {
+//            System.out.println(integer);
+//        }
+
+//        BidirectionalCircularLinkedList integers = new BidirectionalCircularLinkedList();
+//
+//        for (int i = 0; i < 10; i++) {
+//            integers.addLast(i);
+//        }
+//        for (Integer integer : integers) {
+//            System.out.println(integer);
+//        }
+
+        SinglyLinkedList integers = new SinglyLinkedList();
 
         for (int i = 0; i < 10; i++) {
             integers.addLast(i);
         }
 
-        for (Integer integer : integers) {
-            System.out.println(integer);
-        }
+        integers.loop(System.out::println,System.out::println);
+
+
+
 
     }
 

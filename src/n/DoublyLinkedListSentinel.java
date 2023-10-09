@@ -91,7 +91,7 @@ public class DoublyLinkedListSentinel implements Iterable<Integer> {
         };
     }
 
-    static class Node {
+    private static class Node {
         Node prev;
         int value;
         Node next;

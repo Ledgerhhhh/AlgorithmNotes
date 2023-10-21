@@ -40,6 +40,7 @@ public class IsValid {
             } else {
                 stack.push(c);
             }
+            
         }
         return stack.isEmpty();
     }

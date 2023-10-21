@@ -11,6 +11,7 @@ public class MinEatingSpeed {
     public static int minEatingSpeed(int[] piles, int h) {
         int h2 = 0;
         int i = 1;
+        
         for (; ; i *= 2) {
             for (int pile : piles) {
                 int k = pile / i;

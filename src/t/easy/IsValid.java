@@ -17,7 +17,6 @@ public class IsValid {
 //        每个右括号都有一个对应的相同类型的左括号。
         boolean valid = isValid("(]");
         System.out.println(valid);
-
     }
 
     public static boolean isValid(String s) {

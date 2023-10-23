@@ -1,25 +1,38 @@
 package t.easy;
 
+
+import main.Main;
+
 public class FindTilt {
+    public static void main(String[] args) {
 
-    public int findTilt(TreeNode root) {
-
-        return preorder(root, 0);
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        System.out.println(Solution.findTilt(root));
     }
 
-    public int preorder(TreeNode root, Integer i) {
-        if (root != null) {
-            preorder(root.left, i);
-            int left = root.left == null ? 0 : root.left.val;
-            int right = root.right == null ? 0 : root.right.val;
-            i += Math.abs(left - right);
-            preorder(root.right, i);
+    static class Solution {
+        static int i = 0;
+
+        public static int findTilt(TreeNode root) {
+            Solution.preorder(root);
+            return Solution.i;
         }
-        return i;
+
+        public static int preorder(TreeNode root) {
+            if (root != null) {
+                int leftVal = preorder(root.left);
+                int rightVal = preorder(root.right);
+                i += Math.abs(leftVal - rightVal);
+                root.val = leftVal + rightVal + root.val;
+                return root.val;
+            }
+            return 0;
+        }
     }
 
-
-    public class TreeNode {
+    public static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -37,5 +50,4 @@ public class FindTilt {
             this.right = right;
         }
     }
-
 }
